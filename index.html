@@ -202,7 +202,7 @@
                 <p>If you think the LEFT bar represents the target concept, press the LEFT ARROW KEY.</p> 
                 <p>If you think the RIGHT bar represents the target concept, press the RIGHT ARROW KEY.</p> 
                 <p>After you respond there will be a pause and then the next trial will begin.</p> 
-                <p>The experiment will take about 15 minutes, and there will be 4 blocks of trials. You will be notified when you have completed each block. Press 'Continue' when you are ready to begin.<br></p> 
+                <p>The experiment will take about 15 minutes, and there will be 3 blocks of trials. You will be notified when you have completed each block. Press 'Continue' when you are ready to begin.<br></p> 
                 </div>
                 `,
             choices: ['Continue']
@@ -300,6 +300,35 @@
             trial_duration: 500
         };
 
+        // Number of repetitions
+        const totalReps = 3;
+
+        // Loop through repetitions
+        for (let rep = 1; rep <= totalReps; rep++) {
+
+            console.log(`Starting repetition ${rep}`);
+
+            // Shuffle trials anew each repetition
+            let shuffledTrials = jsPsych.randomization.shuffle([...trials]);
+
+            // Add all trials (randomized) to timeline
+            timeline.push({
+                timeline: [iti, assign_trial],
+                timeline_variables: shuffledTrials.map(t => ({ ...t, repetition: rep })), // tag repetition
+                randomize_order: true
+            });
+
+            // Add a break *between* repetitions, not within them
+            if (rep < totalReps) {
+                timeline.push({
+                    type: jsPsychHtmlButtonResponse,
+                    stimulus: `<p>You have completed repetition ${rep} of ${totalReps} trial blocks.</p>
+                       <p>Take a short break if needed, then click below to continue.</p>`,
+                    choices: ['Continue']
+                });
+            }
+        }
+
         /*var break_trial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: "<p>You have completed a block of trials. You can take a short break now. Press the button below when you are ready to continue.</p>",
@@ -314,7 +343,7 @@
 
         timeline.push(procedure);*/
 
-        // Function to create break trials
+        /*// Function to create break trials
         function makeBreakTrial(percentage) {
             return {
                 type: jsPsychHtmlButtonResponse,
@@ -358,7 +387,7 @@
             timeline: [iti, assign_trial],
             timeline_variables: lastBlock,
             randomize_order: true
-        });
+        });*/
 
         // Compute total number of assign trials added to the timeline and log it
         let totalAssignTrials = 0;
