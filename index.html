@@ -229,13 +229,15 @@
             return pairs; // e.g., [ [red, blue], [blue, red], ... ]
         }
 
-        //all height pairs (with replacement)
+        //all height pairs (no repeats/duplicates)
         function getHeightPairs(heights) {
             var keys = Object.keys(heights);
             var pairs = [];
             for (var i = 0; i < keys.length; i++) {
                 for (var j = 0; j < keys.length; j++) {
-                    pairs.push([keys[i], keys[j]]);
+                    if (i !== j) {
+                        pairs.push([keys[i], keys[j]]);
+                    }
                 }
             }
             return pairs;
@@ -255,13 +257,6 @@
         // Number of repetitions per concept
         var n_reps = 2; // you can adjust
 
-        // Build concept-side combinations for perfect balance
-        var concept_side_combos = [];
-        concept_list.forEach(concept => {
-            // Assign half to left, half to right
-            concept_side_combos.push({ concept: concept, side: "left" });
-            concept_side_combos.push({ concept: concept, side: "right" });
-        });
 
         // Shuffle the concept-side combos
         //concept_side_combos = jsPsych.randomization.shuffle(concept_side_combos);
@@ -364,6 +359,15 @@
             timeline_variables: lastBlock,
             randomize_order: true
         });
+
+        // Compute total number of assign trials added to the timeline and log it
+        let totalAssignTrials = 0;
+        for (let i = 0; i < timeline.length; i++) {
+            if (timeline[i].timeline_variables && Array.isArray(timeline[i].timeline_variables)) {
+                totalAssignTrials += timeline[i].timeline_variables.length;
+            }
+        }
+        console.log("Total assign trials in experiment:", totalAssignTrials);
 
         console.log("Participant ID:", participant_id);
         console.log("Assigned condition number:", condition_num);
