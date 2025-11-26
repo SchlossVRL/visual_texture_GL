@@ -71,7 +71,7 @@
         //const condition_num = await jsPsychPipe.getCondition("oGAtmGwgonIL");
 
         // Start with just one set
-        const condition_num = 4;
+        const condition_num = 5;
 
         //correct for data pipe
         const texture_cond = {
@@ -80,6 +80,7 @@
             "2": ['NBT_53_bars/D51.png', 'NBT_53_bars/D19.png', 'NBT_53_bars/D25.png', 'NBT_53_bars/D26.png'],
             "3": ['NBT_53_bars/D85.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D1.png', 'NBT_53_bars/D46.png'],
             "4": ['NBT_53_bars/NewD105.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D102.png', 'NBT_53_bars/D75.png'],
+            "5": ['NBT_53_bars/D8.png', 'NBT_53_bars/D48.png', 'NBT_53_bars/D51.png', 'NBT_53_bars/D49.png'],
         };
 
         const concept_cond = {
@@ -88,6 +89,7 @@
             "2": ["lightning", "hurricane"],
             "3": ["field", "beach"],
             "4": ["lightning", "drought"],
+            "5": ["strawberry", "blueberry"],
         };
 
         concept_list = concept_cond[condition_num];
@@ -118,7 +120,9 @@
                 'NBT_53_bars/NewD105.png',
                 'NBT_53_bars/D102.png',
                 'NBT_53_bars/D75.png',
-                'NBT_53_bars/D105.png'
+                'NBT_53_bars/D105.png',
+                'NBT_53_bars/D48.png',
+                'NBT_53_bars/D49.png'
             ]
         };
         timeline.push(preload);
