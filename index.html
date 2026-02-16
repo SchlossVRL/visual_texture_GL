@@ -6,7 +6,7 @@
     <script src="jsPsych/jspsych.js"></script>
     <script src="jsPsych/plugin-html-button-response.js"></script>
     <script src="jsPsych/plugin-html-keyboard-response.js"></script>
-    <script src="jsPsych/assignment-inferenceAC.js"></script>
+    <script src="jsPsych/assignment-inference_imageAC.js"></script>
     <script src="jsPsych/plugin-fullscreen.js"></script>
     <script src="jsPsych/plugin-survey-text.js"></script>
     <script src="jsPsych/plugin-survey-multi-select.js"></script>
@@ -71,7 +71,7 @@
         //const condition_num = await jsPsychPipe.getCondition("oGAtmGwgonIL");
 
         // Start with just one set
-        const condition_num = 7;
+        const condition_num = 5;
 
         //correct for data pipe
         const texture_cond = {
@@ -81,8 +81,6 @@
             "3": ['NBT_53_bars/D85.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D1.png', 'NBT_53_bars/D46.png'],
             "4": ['NBT_53_bars/NewD105.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D102.png', 'NBT_53_bars/D75.png'],
             "5": ['NBT_53_bars/D8.png', 'NBT_53_bars/D48.png', 'NBT_53_bars/D51.png', 'NBT_53_bars/D49.png'],
-            "6": ["#2D2F85", "#FFFFFF", "#B850A0", "#C34F75"],
-            "7": ["#E61A4C", "#F1A789", "#2E3088", "#3617B0"],
         };
 
         const concept_cond = {
@@ -92,8 +90,6 @@
             "3": ["field", "beach"],
             "4": ["lightning", "drought"],
             "5": ["strawberry", "blueberry"],
-            "6": ["lightning", "hurricane"],
-            "7": ["cherry", "peach"],
         };
 
         concept_list = concept_cond[condition_num];
@@ -304,8 +300,8 @@
                 height_pairs.forEach(function (height_pairs) {
                     trials.push({
                         prompt: concept,
-                        left_color: texture_pairs[0],
-                        right_color: texture_pairs[1],
+                        left_image: texture_pairs[0],
+                        right_image: texture_pairs[1],
                         left_bar_height: heights[height_pairs[0]],
                         right_bar_height: heights[height_pairs[1]]
                     });
@@ -317,12 +313,12 @@
         console.log(trials);
 
         var assign_trial = {
-            type: jsPsychBarChoice,
+            type: jsPsychBarImageChoice,
             prompt: jsPsych.timelineVariable('prompt'),
             left_height_range: jsPsych.timelineVariable('left_bar_height'),
             right_height_range: jsPsych.timelineVariable('right_bar_height'),
-            left_color: jsPsych.timelineVariable('left_color'),
-            right_color: jsPsych.timelineVariable('right_color'),
+            left_image: jsPsych.timelineVariable('left_image'),
+            right_image: jsPsych.timelineVariable('right_image'),
             jitter: 5,
             bg_color: "rgb(128,128,128)",
             choices: ['arrowleft', 'arrowright'],
@@ -452,8 +448,8 @@
         var debrief_script = {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: '<div style="width:800px">Great job! You have finished the experiment.' +
-                '<p>The goal of this experiment is to investigate what factors influence the way people interpret the meanings of colors. In a series of trials, you indicated which colored bars best correspond to concepts from a given list. You saw one set of concepts and colors while other participants will see another set of concepts and colors.</p>' +
-                '<p>We are interested in understanding how the colors used in the bars affect which concepts people assign to each bar.</p>' +
+                '<p>The goal of this experiment is to investigate what factors influence the way people interpret the meanings of textures. In a series of trials, you indicated which textured bars best correspond to concepts from a given list.</p>' +
+                '<p>We are interested in understanding how the textures used in the bars affect which concepts people assign to each bar.</p>' +
                 '<p>Thank you for participating! Your credit will be updated on Sona within a few days.</p>' +
                 '<p>You may press the "esc" key to end the experiment and exit full screen.</p>' +
                 '</div>',
