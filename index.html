@@ -81,6 +81,7 @@
             "3": ['NBT_53_bars/D85.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D1.png', 'NBT_53_bars/D46.png'],
             "4": ['NBT_53_bars/NewD105.png', 'NBT_53_bars/D37.png', 'NBT_53_bars/D102.png', 'NBT_53_bars/D75.png'],
             "5": ['NBT_53_bars/D8.png', 'NBT_53_bars/D48.png', 'NBT_53_bars/D51.png', 'NBT_53_bars/D49.png'],
+            "6": ['NBT_53_bars/D77.png', 'NBT_53_bars/D76.png', 'NBT_53_bars/D25.png', 'NBT_53_bars/D96.png'],
         };
 
         const concept_cond = {
@@ -90,6 +91,7 @@
             "3": ["field", "beach"],
             "4": ["lightning", "drought"],
             "5": ["strawberry", "blueberry"],
+            "6": ["peach", "celery"],
         };
 
         concept_list = concept_cond[condition_num];
@@ -122,7 +124,9 @@
                 'NBT_53_bars/D75.png',
                 'NBT_53_bars/D105.png',
                 'NBT_53_bars/D48.png',
-                'NBT_53_bars/D49.png'
+                'NBT_53_bars/D49.png',
+                'NBT_53_bars/D77.png',
+                'NBT_53_bars/D76.png',
             ]
         };
         timeline.push(preload);
@@ -248,7 +252,7 @@
             "tall": [150, 150]
         };
 
-        //all ordered color pairs (no repeats)
+        //all ordered texture pairs (no repeats)
         function getTexturePairs(textures) {
             var pairs = [];
             for (var i = 0; i < textures.length; i++) {
@@ -258,7 +262,7 @@
                     }
                 }
             }
-            return pairs; // e.g., [ [red, blue], [blue, red], ... ]
+            return pairs;
         }
 
         //all height pairs (no repeats/duplicates)
