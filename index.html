@@ -568,12 +568,14 @@
         console.log("Timeline contents:", timeline);
 
         //Run the experiment
-        //jsPsych.run(timeline);
+        jsPsych.run(timeline);
+        /*
         jsPsych.run(timeline).then(() => {
             if (sona_id) {
                 window.location.href = `https://uwmadison.sona-systems.com/webstudy_credit.aspx?experiment_id=2178&credit_token=c3a24ebfef4c45e280a831124b153aaf&survey_code=` + sona_id;
             }
         });
+        */
     }
     startExperiment();
 
