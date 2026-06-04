@@ -74,23 +74,25 @@
         });
         */
 
+
+        const condition_num = await jsPsychPipe.getCondition("K6jTm4VErbmE");
+
+        // This makes it so I can run 1 condition at a time (rn it is condition number 1)
+        //const condition_num = 1;
+
+
         // Add these IDs to every trial's saved data - PROLIFIC
         jsPsych.data.addProperties({
             subject_id: subject_id,
             study_id: study_id,
             session_id: session_id,
             participant_id: participant_id,
-            //condition_num: condition_num
+            condition_num: condition_num
         });
 
         //Create timeline
         let timeline = [];
 
-
-        const condition_num = await jsPsychPipe.getCondition("K6jTm4VErbmE");
-
-        // This makes it so I can run 1 condition at a time (rn it is condition number 1)
-        //const condition_num = 1;
 
         //correct for data pipe
         const texture_cond = {
