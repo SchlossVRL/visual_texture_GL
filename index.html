@@ -75,8 +75,35 @@
         */
 
 
-        const condition_num = await jsPsychPipe.getCondition("K6jTm4VErbmE");
+        //const condition_num = await jsPsychPipe.getCondition("K6jTm4VErbmE");
+        let original_condition = await jsPsychPipe.getCondition("K6jTm4VErbmE");
+        let condition_num = original_condition;
 
+        //Limit conditions run
+        if (condition_num <= 0) {
+            condition_num = 0;
+        } else if (condition_num <= 1) {
+            condition_num = 1;
+        } else if (condition_num <= 2) {
+            condition_num = 2;
+        } else if (condition_num <= 3) {
+            condition_num = 3;
+        }else if (condition_num <= 4) {
+            condition_num = 4;
+        }else if (condition_num <= 5) {
+            condition_num = 5;
+        }else if (condition_num <= 7) {
+            condition_num = 6;
+        }else if (condition_num <= 8) {
+            condition_num = 8;
+        }else if (condition_num <= 9) {
+            condition_num = 9;
+        }else if (condition_num <= 10) {
+            condition_num = 10;
+        }else {
+            condition_num = 11;
+        }
+        
         // This makes it so I can run 1 condition at a time (rn it is condition number 1)
         //const condition_num = 1;
 
@@ -129,6 +156,7 @@
         concept_list = jsPsych.randomization.shuffle(concept_list);
         texture_list = texture_cond[condition_num];
 
+        console.log("Original condition number:", original_condition);
         console.log("Assigned condition number:", condition_num);
         console.log("Assigned concepts:", concept_list);
         console.log("Assigned textures:", texture_list);
